@@ -1,26 +1,49 @@
 <template>
-  <img alt="Vue logo" src="./assets/logo.png">
-  <HelloWorld msg="Welcome to Your Vue.js App"/>
+  <header>
+    <TetePages />
+  </header>
+  <main>
+    <BlockAcceil id="home" />
+    <APropos id="apropos" />
+    <ProjetP id="projetp" />
+    <ContactMe id="contactme" />
+  </main>
+  <footer>
+    <PiedsNav />
+  </footer>
 </template>
 
-<script>
-import HelloWorld from './components/HelloWorld.vue'
-
-export default {
-  name: 'App',
-  components: {
-    HelloWorld
-  }
-}
+<script setup>
+import PiedsNav from "./components/PiedsNav.vue";
+import TetePages from "./components/TetePages.vue";
+import BlockAcceil from "./components/BlockAcceil.vue";
+import APropos from "./components/APropos.vue";
+import ProjetP from "./components/ProjetP.vue";
+import ContactMe from "./components/ContactMe.vue";
 </script>
 
+<style scoped>
+:global(html) {
+  scrollbar-width: none;
+  scroll-behavior: smooth;
+}
+
+:global(body) {
+  -ms-overflow-style: none;
+  margin: 0;
+}
+</style>
+
 <style>
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
+/* Global Animation Styles */
+.reveal-on-scroll {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: all 0.8s cubic-bezier(0.5, 0, 0, 1);
+}
+
+.animate-fade-in-up {
+  opacity: 1;
+  transform: translateY(0);
 }
 </style>
