@@ -200,7 +200,7 @@ const submitForm = async () => {
 
   // Prépare les données pour Web3Forms
   const payload = {
-    access_key: import.meta.env.VUE_APP_WEB3FORMS_KEY,
+    access_key:process.env.VUE_APP_WEB3FORMS_KEY,
     name: formData.value.nom,
     email: formData.value.email,
     subject: formData.value.sujet || "Nouveau message Portfolio",
