@@ -1,3 +1,6 @@
+<script setup>
+  const publicPath = process.env.BASE_URL;
+</script>
 <template>
   <main class="accueil-main" v-intersect="'is-visible'">
     <section class="blabla">
@@ -7,7 +10,14 @@
       </p>
 
       <div class="butt accueil-boutons">
-        <a id="cv" href="/cv/monCV.pdf" download>Telecharger mon CV</a>
+        <!-- <a id="cv" href="/cv/monCV.pdf" download>Telecharger mon CV</a> -->
+        <a
+          id="cv"
+          :href="`${publicPath}cv/monCV.pdf`"
+          download="Mon_CV_Frederic.pdf"
+        >
+          Telecharger mon CV
+        </a>
 
         <a id="contact" href="#contactme">Me Contacter</a>
       </div>
