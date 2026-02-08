@@ -29,25 +29,51 @@
 import cardAff from "./block/cardAff.vue";
 import lgImage from "@/assets/LG.png";
 import testImage from "@/assets/test.jpg";
-
+import image2D from "@/assets/construire_maison.jpg";
+import aipic from "@/assets/ai.jpg";
 const projetPerso = [
   {
     titre: "Application E-commerce",
-    description:
-      "Application E-commerce pour la vente de Tennis de sport et de vêtements ",
+    description: "Application E-commerce pour la vente de Tennis de sport ",
     technos: ["Flutter", "Firebase"],
-    lienProjet: "https://ecommerce.com",
-    lienGit: "https://github.com/ecommerce",
+    lienGit: "  https://github.com/Eizrah/projet-final-declic-Lv3",
     image: lgImage,
   },
+
   {
-    titre: "Application E-commerce",
+    titre: "Site E-commerce",
+    description: "Site E-commerce pour la vente de Tennis de sport \n Ceci est la partie front-end",
+    technos: ["VueJs", "TailwindCss"],
+    lienGit: "https://github.com/Eizrah/EcommerveFront/",
+    image: lgImage,
+  },
+
+  {
+    titre: "Site E-commerce",
     description:
-      "Application E-commerce pour la vente de Tennis de sport et de vêtements  mais eb version application web",
-    technos: ["VueJs", "Django", "Mysql"],
-    lienProjet: "https://ecommerce.com",
-    lienGit: "https://github.com/ecommerce",
+      "Site E-commerce pour la vente de Tennis de sport \n Ceci est la partie back-end \n coté back-end en cour de developpement",
+    technos: [ "Django", "Mysql"],
+
+    lienGit: "  https://github.com/Eizrah/SI_E_Shop/",
     image: testImage,
+  },
+  {
+    titre: "Plan en 2D",
+    description:
+      "Logiciel fais en Java pour la construction d'un plan d'une maison en 2D ",
+    technos: ["Java", "Swing"],
+
+    lienGit: "https://github.com/Eizrah/Java2DM12025",
+    image: image2D,
+  },
+  {
+    titre: "ML pour les personnes muettes",
+    description:
+      "c'est un projet de machine learning pour aider les personnes muettes à communiquer mais aussi permettant à des personnes normales d'apprendre le language des signes ",
+    technos: ["Python", "MediaPipe","OpenCV","CustomTkinter","Pillow","Panda & Scikit-learn","Pyttsx3"],
+
+    lienGit: "https://github.com/Eizrah/Machine_L_IHM",
+    image: aipic,
   },
 ];
 </script>

@@ -61,7 +61,7 @@
             </div>
             <div class="ml-4">
               <p class="text-base font-semibold text-gray-700">Disponibilité</p>
-              <p class="text-sm text-gray-500">Lun - Ven, 9h - 18h</p>
+              <p class="text-sm text-gray-500">Lun - Ven, 9h - 22h</p>
             </div>
           </div>
         </div>
@@ -73,23 +73,30 @@
         </h4>
         <div class="flex space-x-4">
           <a
-            href="#"
+            href="https://github.com/Eizrah"
             class="p-3 rounded-full bg-white text-gray-600 hover:text-indigo-600 transition duration-300 shadow-sm"
           >
             <font-awesome-icon icon="fa-brands fa-github" class="text-xl" />
           </a>
-          <a
+          <!-- <a
             href="#"
             class="p-3 rounded-full bg-white text-gray-600 hover:text-indigo-600 transition duration-300 shadow-sm"
           >
             <font-awesome-icon icon="fa-brands fa-linkedin" class="text-xl" />
-          </a>
+          </a> -->
 
           <a
-            href="#"
+            href="mailto:eizrahfdr@gmail.com"
             class="p-3 rounded-full bg-white text-gray-600 hover:text-indigo-600 transition duration-300 shadow-sm"
           >
             <font-awesome-icon icon="fa-solid fa-envelope" />
+          </a>
+
+          <a
+            href="https://wa.me/261348266319"
+            class="p-3 rounded-full bg-white text-gray-600 hover:text-indigo-600 transition duration-300 shadow-sm"
+          >
+            <font-awesome-icon icon="fa-brands fa-whatsapp" />
           </a>
         </div>
       </div>
@@ -99,7 +106,7 @@
           Envoyez-moi un message
         </h3>
 
-        <form action="#" method="POST" class="space-y-4">
+        <form @submit.prevent="submitForm" class="space-y-4">
           <div>
             <label
               for="nom"
@@ -109,7 +116,7 @@
             <input
               type="text"
               id="nom"
-              name="nom"
+              v-model="formData.nom"
               placeholder="Votre nom"
               class="w-full p-3 border border-gray-300 rounded-lg focus:ring-indigo-500 focus:border-indigo-500"
               required
@@ -125,7 +132,7 @@
             <input
               type="email"
               id="email"
-              name="email"
+              v-model="formData.email"
               placeholder="votre@email.com"
               class="w-full p-3 border border-gray-300 rounded-lg focus:ring-indigo-500 focus:border-indigo-500"
               required
@@ -141,7 +148,7 @@
             <input
               type="text"
               id="sujet"
-              name="sujet"
+              v-model="formData.sujet"
               placeholder="Sujet de votre message"
               class="w-full p-3 border border-gray-300 rounded-lg focus:ring-indigo-500 focus:border-indigo-500"
             />
@@ -155,7 +162,7 @@
             >
             <textarea
               id="message"
-              name="message"
+              v-model="formData.message"
               rows="5"
               placeholder="Décrivez votre projet..."
               class="w-full p-3 border border-gray-300 rounded-lg focus:ring-indigo-500 focus:border-indigo-500"
@@ -165,15 +172,68 @@
 
           <button
             type="submit"
-            class="w-full py-3 px-6 rounded-lg text-white font-bold text-lg transition duration-300 transform hover:scale-[1.01] bg-gradient-to-r from-blue-600 to-purple-600 shadow-lg shadow-indigo-500/50"
+            :disabled="isSubmitting"
+            class="w-full py-3 px-6 rounded-lg text-white font-bold text-lg transition duration-300 transform hover:scale-[1.01] bg-gradient-to-r from-blue-600 to-purple-600 shadow-lg shadow-indigo-500/50 disabled:opacity-50"
           >
-            Envoyer le message
+            {{ isSubmitting ? "Envoi en cours..." : "Envoyer le message" }}
           </button>
         </form>
       </div>
     </section>
   </main>
 </template>
+
+<script setup>
+import { ref } from "vue";
+
+const formData = ref({
+  nom: "",
+  email: "",
+  sujet: "",
+  message: "",
+});
+
+const isSubmitting = ref(false);
+
+const submitForm = async () => {
+  isSubmitting.value = true;
+
+  // Prépare les données pour Web3Forms
+  const payload = {
+    access_key: import.meta.env.VITE_WEB3FORMS_KEY,
+    name: formData.value.nom,
+    email: formData.value.email,
+    subject: formData.value.sujet || "Nouveau message Portfolio",
+    message: formData.value.message,
+  };
+
+  try {
+    const response = await fetch("https://api.web3forms.com/submit", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        Accept: "application/json",
+      },
+      body: JSON.stringify(payload),
+    });
+
+    const result = await response.json();
+
+    if (result.success) {
+      alert("Merci ! Votre message a été envoyé avec succès.");
+      // Réinitialise le formulaire
+      formData.value = { nom: "", email: "", sujet: "", message: "" };
+    } else {
+      alert("Oups ! Une erreur est survenue.");
+    }
+  } catch (error) {
+    console.error(error);
+    alert("Impossible d'envoyer le message pour le moment.");
+  } finally {
+    isSubmitting.value = false;
+  }
+};
+</script>
 
 <style scoped>
 @keyframes slideX {

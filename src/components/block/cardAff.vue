@@ -32,21 +32,22 @@
 
       <div class="flex items-center gap-4 mt-6">
         
-        <a 
+        <!-- <a 
           :href="lienProjet" 
           target="_blank" 
           class="flex-1 text-center py-2 px-4 rounded-lg text-white font-bold transition duration-300 transform hover:scale-[1.03] 
                  bg-gradient-to-r from-blue-600 to-purple-600 shadow-lg shadow-blue-500/50"
         >
           Voir le projet
-        </a>
+        </a> -->
 
         <a 
           :href="lienGit" 
           target="_blank" 
-          class="flex-none p-3 rounded-full border border-gray-300 text-gray-700 transition duration-300 hover:bg-gray-100 hover:text-indigo-600"
-        >
+         class="flex-1 text-center py-2 px-4 rounded-lg text-white font-bold transition duration-300 transform hover:scale-[1.03] 
+                 bg-gradient-to-r from-blue-600 to-purple-600 shadow-lg shadow-blue-500/50"    >
           <font-awesome-icon icon="fa-brands fa-github" class="text-xl" />
+          Voir le projet
         </a>
       </div>
     </div>

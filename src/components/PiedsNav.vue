@@ -7,43 +7,42 @@
     </p>
     <ul>
       <li>
-        <button>
+        <a href="https://github.com/Eizrah" class="social-link">
           <font-awesome-icon icon="fa-brands fa-github" />
-        </button>
+        </a>
       </li>
 
       <li>
-        <button>
+        <!-- <button>
           <font-awesome-icon icon="fa-brands fa-linkedin" />
-        </button>
+        </button> -->
       </li>
 
       <li>
-        <button>
+        <a href="https://wa.me/261348266319" class="social-link">
           <font-awesome-icon icon="fa-brands fa-whatsapp" />
-        </button>
+        </a>
       </li>
 
       <li>
-        <button>
+        <a href="mailto:eizrahfdr@gmail.com" class="social-link">
           <font-awesome-icon icon="fa-solid fa-envelope" />
-        </button>
+        </a>
       </li>
     </ul>
     <div class="barVide">
       <hr />
     </div>
     <p class="copyright">
-      &copy; {{ new Date().getFullYear() }} VotreEntreprise. Tous droits
-      réservés.
+      &copy; {{ new Date().getFullYear() }} F.Eizrah. Tous droits réservés.
     </p>
   </footer>
 </template>
 
 <style scoped>
-  hr{
-    opacity: 0.5;
-  }
+hr {
+  opacity: 0.5;
+}
 .barVide {
   width: 90%;
   margin: 0 auto;
@@ -66,17 +65,14 @@ footer {
   text-align: center;
   overflow: hidden;
   /* padding-right: 1rem; */
-
 }
 /* Réduire l'espace sous la description */
 footer > p:nth-of-type(1) {
-    margin: 5px 0 10px;
+  margin: 5px 0 10px;
 }
 
-
 h3 {
-   margin: 10px 0 0; 
-
+  margin: 10px 0 0;
 
   font-size: 1.2rem;
   color: #9394fb;
@@ -84,7 +80,7 @@ h3 {
 
 ul {
   padding: 0;
-   margin: 10px 0; 
+  margin: 10px 0;
 
   display: flex;
   justify-content: center;
@@ -98,22 +94,24 @@ ul li {
   margin: 0;
 }
 
-ul li button {
+.social-link {
   border: none;
   background-color: transparent;
   cursor: pointer;
   color: #fff;
   font-size: 1.5rem;
   transition: color 0.3s ease;
+  display: inline-block; /* Essential for transforms */
+  text-decoration: none; /* Ensure no underline */
 }
 
-ul li button:hover {
+.social-link:hover {
   color: #007bff;
   transform: scale(1.1);
   transition: all 0.3s ease;
 }
 
-ul li button:active {
+.social-link:active {
   color: #007bff;
   transform: scale(0.9);
   transition: all 0.3s ease;

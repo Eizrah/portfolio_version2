@@ -1,7 +1,7 @@
 <template>
   <main
     id="apropos"
-    class="container mx-auto px-6 py-16 "
+    class="container mx-auto px-6 py-16"
     v-intersect="'is-visible'"
   >
     <h2 class="text-4xl font-extrabold text-gray-800 text-center mb-4">
@@ -18,16 +18,14 @@
           mobile
         </h4>
         <p class="mb-4 text-gray-600 leading-relaxed texte4">
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Deserunt
-          quaerat sunt accusantium. Similique qui libero vel. Corrupti dolore,
-          molestias repudiandae eius quam aperiam, aliquam esse ea velit
-          voluptate eveniet et?
+          Titulaire d'une licence, je suis actuellement en Master 1 à
+          l'université de Barikadimy. Je suis développeur Web Fullstack,
+          utilisant Vue.js pour le frontend et Django pour le backend.
         </p>
         <p class="mb-8 text-gray-600 leading-relaxed texte4">
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Expedita
-          doloribus doloremque consequuntur voluptates, vero sed et illum vel
-          voluptate distinctio veniam sint esse aut optio eius assumenda
-          veritatis suscipit nesciunt?
+          Je suis également développeur mobile avec Flutter. Grâce à une
+          formation chez DCLIC, j'ai aussi de solides bases en modélisation
+          (UML).
         </p>
 
         <h5
@@ -37,50 +35,13 @@
         </h5>
         <div class="flex flex-wrap gap-3">
           <div
-            class="px-4 py-2 bg-red-100 text-red-800 font-medium rounded-full text-sm comp1"
+            v-for="(skill, index) in skills"
+            :key="skill.name"
+            class="px-4 py-2 font-medium rounded-full text-sm skill-item"
+            :class="skill.class"
+            :style="{ animationDelay: `${0.9 + index * 0.3}s` }"
           >
-            Java
-          </div>
-          <div
-            class="px-4 py-2 bg-blue-100 text-blue-800 font-medium rounded-full text-sm comp2"
-          >
-            Python
-          </div>
-          <div
-            class="px-4 py-2 bg-cyan-100 text-cyan-800 font-medium rounded-full text-sm comp3"
-          >
-            CustomTkinter
-          </div>
-          <div
-            class="px-4 py-2 bg-green-100 text-green-800 font-medium rounded-full text-sm comp4"
-          >
-            Django
-          </div>
-          <div
-            class="px-4 py-2 bg-yellow-100 text-yellow-800 font-medium rounded-full text-sm comp5"
-          >
-            JavaScript
-          </div>
-          <div
-            class="px-4 py-2 bg-teal-100 text-teal-800 font-medium rounded-full text-sm comp6"
-          >
-            Vue.js
-          </div>
-
-          <div
-            class="px-4 py-2 bg-purple-100 text-purple-800 font-medium rounded-full text-sm comp7"
-          >
-            Flutter
-          </div>
-          <div
-            class="px-4 py-2 bg-blue-100 text-blue-800 font-medium rounded-full text-sm comp8"
-          >
-            MySQL
-          </div>
-          <div
-            class="px-4 py-2 bg-pink-100 text-pink-800 font-medium rounded-full text-sm comp9"
-          >
-            SQLite
+            {{ skill.name }}
           </div>
         </div>
       </section>
@@ -140,8 +101,22 @@ const images = ref([
   { url: img4, alt: "Photo de java" },
   { url: img5, alt: "Photo de javascript" },
   { url: img6, alt: "Photo de vue" },
+  { url: img6, alt: "Photo de vue" },
   // Ajoutez d'autres images ici
 ]);
+
+const skills = [
+  { name: "Java", class: "bg-red-100 text-red-800" },
+  { name: "Python", class: "bg-blue-100 text-blue-800" },
+  { name: "CustomTkinter", class: "bg-cyan-100 text-cyan-800" },
+  { name: "Django", class: "bg-green-100 text-green-800" },
+  { name: "JavaScript", class: "bg-yellow-100 text-yellow-800" },
+  { name: "Vue.js", class: "bg-teal-100 text-teal-800" },
+  { name: "Flutter", class: "bg-purple-100 text-purple-800" },
+  { name: "MySQL", class: "bg-blue-100 text-blue-800" },
+  { name: "SQLite", class: "bg-pink-100 text-pink-800" },
+  { name: "UML", class: "bg-pink-100 text-pink-800" },
+];
 
 //Variable pour suivre l'index de la photo actuellement affichée
 const currentImageIndex = ref(0);
@@ -214,15 +189,7 @@ onUnmounted(() => {
 .titre4,
 .texte4,
 .text5,
-.comp1,
-.comp2,
-.comp3,
-.comp4,
-.comp5,
-.comp6,
-.comp7,
-.comp8,
-.comp9 {
+.skill-item {
   opacity: 0;
 }
 .is-visible .titre4,
@@ -232,31 +199,7 @@ onUnmounted(() => {
 .is-visible .text5 {
   animation: slideX 1s forwards 0.6s;
 }
-.is-visible .comp1 {
-  animation: slideX 1s forwards 0.9s;
-}
-.is-visible .comp2 {
-  animation: slideX 1s forwards 1.2s;
-}
-.is-visible .comp3 {
-  animation: slideX 1s forwards 1.5s;
-}
-.is-visible .comp4 {
-  animation: slideX 1s forwards 1.8s;
-}
-.is-visible .comp5 {
-  animation: slideX 1s forwards 2.1s;
-}
-.is-visible .comp6 {
-  animation: slideX 1s forwards 2.4s;
-}
-.is-visible .comp7 {
-  animation: slideX 1s forwards 2.7s;
-}
-.is-visible .comp8 {
-  animation: slideX 1s forwards 3s;
-}
-.is-visible .comp9 {
-  animation: slideX 1s forwards 3.3s;
+.is-visible .skill-item {
+  animation: slideX 1s forwards; /* Delay is handled inline */
 }
 </style>

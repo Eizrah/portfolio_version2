@@ -7,24 +7,24 @@
       </p>
 
       <div class="butt accueil-boutons">
-        <button id="cv">Telecharger mon CV</button>
+        <a id="cv" href="/cv/cv.pdf" download>Telecharger mon CV</a>
 
-        <button id="contact">Me Contacter</button>
+        <a id="contact" href="#contactme">Me Contacter</a>
       </div>
 
       <ul class="accueil-socials">
         <li>
-          <a href="#">
+          <a href="https://github.com/Eizrah">
             <font-awesome-icon icon="fa-brands fa-github" />
           </a>
         </li>
         <li>
-          <a href="#">
+          <a href="https://wa.me/261348266319">
             <font-awesome-icon icon="fa-brands fa-whatsapp" />
           </a>
         </li>
         <li>
-          <a href="#">
+          <a href="mailto:eizrahfdr@gmail.com">
             <font-awesome-icon icon="fa-solid fa-envelope" />
           </a>
         </li>
@@ -32,7 +32,11 @@
     </section>
 
     <section class="photo">
-      <img src="@/assets/pdp.jpg" alt="photo de profil" class="accueil-photo" />
+      <img
+        src="@/assets/sans_fond.png"
+        alt="photo de profil"
+        class="accueil-photo"
+      />
     </section>
   </main>
 </template>
@@ -126,7 +130,10 @@
   border-radius: 0.5rem;
   cursor: pointer;
   border: none;
+  border: none;
   font-weight: 600;
+  display: inline-block;
+  text-decoration: none;
 
   background-image: linear-gradient(
     to right,
@@ -154,7 +161,10 @@
   border-radius: 0.5rem;
   cursor: pointer;
   border: 1px solid #e5e7eb;
+  border: 1px solid #e5e7eb;
   font-weight: 600;
+  display: inline-block;
+  text-decoration: none;
 
   transition: transform 0.3s ease-out, box-shadow 0.3s ease-out;
 }

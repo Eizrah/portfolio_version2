@@ -22,7 +22,7 @@
         <a @click="closeMenu" href="#projetp">Mes Projets</a>
       </li>
       <li>
-        <a @click="closeMenu" href="#contactme">Contacte</a>
+        <a @click="closeMenu" href="#contactme">Contact</a>
       </li>
     </ul>
   </nav>
