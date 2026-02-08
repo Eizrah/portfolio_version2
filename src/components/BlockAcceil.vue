@@ -11,11 +11,7 @@
 
       <div class="butt accueil-boutons">
         <!-- <a id="cv" href="/cv/monCV.pdf" download>Telecharger mon CV</a> -->
-        <a
-          id="cv"
-          :href="`${publicPath}cv/monCV.pdf`"
-          download="Mon_CV_Frederic.pdf"
-        >
+        <a id="cv" :href="`${publicPath}cv/monCV.pdf`" download="monCV.pdf">
           Telecharger mon CV
         </a>
 
