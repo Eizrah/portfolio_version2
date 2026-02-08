@@ -7,7 +7,7 @@
       </p>
 
       <div class="butt accueil-boutons">
-        <a id="cv" href="/cv/cv.pdf" download>Telecharger mon CV</a>
+        <a id="cv" href="/cv/monCV.pdf" download>Telecharger mon CV</a>
 
         <a id="contact" href="#contactme">Me Contacter</a>
       </div>
