@@ -39,7 +39,7 @@
 
     <section class="photo">
       <img
-        src="@/assets/sans_fond.png"
+        src="@/assets/sans_fond.webp"
         alt="photo de profil"
         class="accueil-photo"
       />
