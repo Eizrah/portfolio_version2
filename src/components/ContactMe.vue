@@ -206,7 +206,7 @@ const submitForm = async () => {
     subject: formData.value.sujet || "Nouveau message Portfolio",
     message: formData.value.message,
   };
-
+console.log("Ma clé est :", process.env.VUE_APP_WEB3FORMS_KEY);
   try {
     const response = await fetch("https://api.web3forms.com/submit", {
       method: "POST",
