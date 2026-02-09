@@ -257,17 +257,18 @@ ul li a:hover {
     flex-direction: column;
     align-items: flex-start;
     position: fixed;
-    top: 60px;
+    top: 50px;
     left: 0;
     background: var(--nav-bg);
     backdrop-filter: blur(20px);
-    padding: 1.5rem;
-    width: 280px;
-    height: calc(100vh - 60px);
+    padding: 1rem;
+    width: 260px;
+    height: calc(100vh - 50px);
     border-right: 1px solid var(--border-color);
     transform: translateX(-100%);
     transition: transform 0.3s ease;
     gap: 0;
+    overflow-y: auto;
   }
 
   ul.nav-links.open {
