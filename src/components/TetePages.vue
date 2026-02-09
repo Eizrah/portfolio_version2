@@ -255,6 +255,7 @@ ul li a:hover {
 
   ul.nav-links {
     flex-direction: column;
+    justify-content: flex-start; /* Ensure items start at the top */
     align-items: flex-start;
     position: fixed;
     top: 50px;
@@ -282,7 +283,7 @@ ul li a:hover {
   ul li a {
     display: block;
     width: 100%;
-    padding: 1rem 0;
+    padding: 0.8rem 0; /* Reduced padding from 1rem */
     font-size: 1.1rem;
   }
 }
