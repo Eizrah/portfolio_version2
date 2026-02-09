@@ -1,120 +1,173 @@
 <template>
-  <div class="max-w-sm mx-auto bg-white rounded-xl shadow-lg hover:shadow-2xl overflow-hidden transition-shadow duration-300">
-    
-    <div class="h-48 overflow-hidden">
-      <img 
-        :src="image" 
-        :alt="'Image du projet ' + titre" 
-        class="w-full h-full object-cover transition-transform duration-500 hover:scale-105"
-      />
+  <div class="project-card">
+    <div class="card-image">
+      <img :src="image" :alt="'Image du projet ' + titre" />
+      <div class="card-overlay"></div>
     </div>
 
-    <div class="p-6">
-      
-      <div class="flex flex-wrap gap-2 mb-3">
-        <span 
-          v-for="(techno, index) in technos" 
+    <div class="card-content">
+      <div class="card-technos">
+        <span
+          v-for="(techno, index) in technos"
           :key="index"
-          class="px-3 py-1 text-xs font-semibold rounded-full"
-          :class="getTechnoClasses(techno)"
+          class="techno-badge"
         >
           {{ techno }}
         </span>
       </div>
 
-      <h3 class="text-xl font-extrabold text-gray-900 mb-2">
-        {{ titre }}
-      </h3>
+      <h3 class="card-title">{{ titre }}</h3>
 
-      <p class="text-sm text-gray-600 mb-4 h-12 overflow-hidden">
-        {{ description }}
-      </p>
+      <p class="card-description">{{ description }}</p>
 
-      <div class="flex items-center gap-4 mt-6">
-        
-        <!-- <a 
-          :href="lienProjet" 
-          target="_blank" 
-          class="flex-1 text-center py-2 px-4 rounded-lg text-white font-bold transition duration-300 transform hover:scale-[1.03] 
-                 bg-gradient-to-r from-blue-600 to-purple-600 shadow-lg shadow-blue-500/50"
-        >
-          Voir le projet
-        </a> -->
-
-        <a 
-          :href="lienGit" 
-          target="_blank" 
-         class="flex-1 text-center py-2 px-4 rounded-lg text-white font-bold transition duration-300 transform hover:scale-[1.03] 
-                 bg-gradient-to-r from-blue-600 to-purple-600 shadow-lg shadow-blue-500/50"    >
-          <font-awesome-icon icon="fa-brands fa-github" class="text-xl" />
-          Voir le projet
-        </a>
-      </div>
+      <a :href="lienGit" target="_blank" class="card-button">
+        <font-awesome-icon icon="fa-brands fa-github" />
+        {{ t("projects.viewProject") }}
+      </a>
     </div>
   </div>
 </template>
 
 <script setup>
-import { defineProps } from 'vue';
+import { defineProps } from "vue";
+import { useI18n } from "@/i18n";
 
-// Définition des props pour rendre le composant dynamique
+const { t } = useI18n();
+
 defineProps({
   image: {
     type: String,
     required: true,
-    default: '/path/to/default-image.jpg' 
+    default: "/path/to/default-image.jpg",
   },
   titre: {
     type: String,
     required: true,
-    default: 'Nom du Projet' 
+    default: "Nom du Projet",
   },
   description: {
     type: String,
     required: true,
-    default: 'Description courte du projet.' 
+    default: "Description courte du projet.",
   },
   technos: {
     type: Array,
     required: true,
-    default: () => [] 
+    default: () => [],
   },
   lienProjet: {
     type: String,
     required: false,
-    default: '#' 
+    default: "#",
   },
   lienGit: {
     type: String,
     required: false,
-    default: '#' 
+    default: "#",
   },
 });
-
-/**
- * Fonction utilitaire pour attribuer des classes Tailwind spécifiques 
- * basées sur la technologie pour simuler la coloration de l'image.
- */
-const getTechnoClasses = (technoName) => {
-  const lowerName = technoName.toLowerCase();
-  
-  if (lowerName.includes('django')) return 'bg-green-100 text-green-800';
-  if (lowerName.includes('mysql')) return 'bg-purple-100 text-purple-800';
-  
-  // Couleurs par défaut (si non trouvées)
-  const colors = [
-    'bg-blue-100 text-blue-800',
-    'bg-pink-100 text-pink-800',
-    'bg-teal-100 text-teal-800',
-    'bg-yellow-100 text-yellow-800',
-  ];
-  
-  // Hachage simple pour avoir une couleur semi-cohérente
-  let hash = 0;
-  for (let i = 0; i < lowerName.length; i++) {
-    hash = lowerName.charCodeAt(i) + ((hash << 5) - hash);
-  }
-  const index = Math.abs(hash) % colors.length;
-  return colors[index];
-};
 </script>
+
+<style scoped>
+.project-card {
+  background: var(--bg-card);
+  backdrop-filter: blur(10px);
+  border-radius: 16px;
+  overflow: hidden;
+  transition: all 0.4s ease;
+  border: 1px solid var(--border-color);
+}
+
+.project-card:hover {
+  transform: translateY(-8px);
+  border-color: var(--accent-cyan);
+  box-shadow: 0 20px 40px rgba(0, 217, 255, 0.15);
+}
+
+.card-image {
+  position: relative;
+  height: 200px;
+  overflow: hidden;
+}
+
+.card-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.5s ease;
+}
+
+.project-card:hover .card-image img {
+  transform: scale(1.1);
+}
+
+.card-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    to bottom,
+    transparent 0%,
+    var(--bg-primary) 100%
+  );
+  opacity: 0.8;
+}
+
+.card-content {
+  padding: 1.5rem;
+}
+
+.card-technos {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-bottom: 1rem;
+}
+
+.techno-badge {
+  padding: 0.25rem 0.75rem;
+  background: rgba(0, 217, 255, 0.1);
+  border: 1px solid var(--accent-cyan);
+  border-radius: 20px;
+  color: var(--accent-cyan);
+  font-size: 0.75rem;
+  font-weight: 500;
+}
+
+.card-title {
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: var(--text-primary);
+  margin-bottom: 0.75rem;
+}
+
+.card-description {
+  color: var(--text-secondary);
+  font-size: 0.9rem;
+  line-height: 1.6;
+  margin-bottom: 1.5rem;
+  min-height: 3rem;
+  white-space: pre-line;
+}
+
+.card-button {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  width: 100%;
+  justify-content: center;
+  padding: 0.75rem 1.5rem;
+  background: linear-gradient(135deg, var(--accent-cyan), var(--accent-purple));
+  color: white;
+  font-weight: 600;
+  font-size: 0.9rem;
+  border-radius: 10px;
+  text-decoration: none;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 15px rgba(0, 217, 255, 0.2);
+}
+
+.card-button:hover {
+  box-shadow: 0 6px 25px rgba(0, 217, 255, 0.4);
+  transform: translateY(-2px);
+}
+</style>

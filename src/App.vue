@@ -1,25 +1,36 @@
 <template>
-  <header>
-    <TetePages />
-  </header>
-  <main>
-    <BlockAcceil id="home" />
-    <APropos id="apropos" />
-    <ProjetP id="projetp" />
-    <ContactMe id="contactme" />
-  </main>
-  <footer>
-    <PiedsNav />
-  </footer>
+  <LoadingScreen v-if="isLoading" @loaded="onLoaded" />
+  <div v-show="!isLoading" class="app-container">
+    <header>
+      <TetePages />
+    </header>
+    <main>
+      <BlockAcceil id="home" />
+      <APropos id="apropos" />
+      <ProjetP id="projetp" />
+      <ContactMe id="contactme" />
+    </main>
+    <footer>
+      <PiedsNav />
+    </footer>
+  </div>
 </template>
 
 <script setup>
+import { ref } from "vue";
+import LoadingScreen from "./components/LoadingScreen.vue";
 import PiedsNav from "./components/PiedsNav.vue";
 import TetePages from "./components/TetePages.vue";
 import BlockAcceil from "./components/BlockAcceil.vue";
 import APropos from "./components/APropos.vue";
 import ProjetP from "./components/ProjetP.vue";
 import ContactMe from "./components/ContactMe.vue";
+
+const isLoading = ref(true);
+
+const onLoaded = () => {
+  isLoading.value = false;
+};
 </script>
 
 <style scoped>
@@ -31,6 +42,19 @@ import ContactMe from "./components/ContactMe.vue";
 :global(body) {
   -ms-overflow-style: none;
   margin: 0;
+}
+
+.app-container {
+  animation: fadeIn 0.5s ease-out;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
 }
 </style>
 

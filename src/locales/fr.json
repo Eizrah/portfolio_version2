@@ -1,0 +1,80 @@
+{
+  "nav": {
+    "home": "Accueil",
+    "about": "À propos",
+    "projects": "Mes Projets",
+    "contact": "Contact"
+  },
+  "home": {
+    "greeting": "Bonjour, je suis FREDERIC Eizrah",
+    "title": "Developpeur Fullstack & Mobil",
+    "downloadCV": "Telecharger mon CV",
+    "contactMe": "Me Contacter"
+  },
+  "about": {
+    "title": "À propos de moi",
+    "subtitle": "Diplômé en informatique, spécialisé en developpement web fullstack et mobile",
+    "paragraph1": "Titulaire d'une licence, je suis actuellement en Master 1 à l'université de Barikadimy. Je suis développeur Web Fullstack, utilisant Vue.js pour le frontend et Django pour le backend.",
+    "paragraph2": "Je suis également développeur mobile avec Flutter. Grâce à une formation chez DCLIC, j'ai aussi de solides bases en modélisation (UML).",
+    "skills": "Compétences technique"
+  },
+  "projects": {
+    "title": "Projet personnel",
+    "subtitle": "Découvrez une section de mes réalisations personnel, alliant des applications desktop,web et mobile",
+    "viewProject": "Voir le projet",
+    "items": {
+      "ecommerceApp": {
+        "title": "Application E-commerce",
+        "description": "Application E-commerce pour la vente de Tennis de sport"
+      },
+      "ecommerceSiteFront": {
+        "title": "Site E-commerce",
+        "description": "Site E-commerce pour la vente de Tennis de sport \n Ceci est la partie front-end"
+      },
+      "ecommerceSiteBack": {
+        "title": "Site E-commerce",
+        "description": "Site E-commerce pour la vente de Tennis de sport \n Ceci est la partie back-end \n coté back-end en cour de developpement"
+      },
+      "plan2D": {
+        "title": "Plan en 2D",
+        "description": "Logiciel fais en Java pour la construction d'un plan d'une maison en 2D"
+      },
+      "mlMute": {
+        "title": "ML pour les personnes muettes",
+        "description": "c'est un projet de machine learning pour aider les personnes muettes à communiquer mais aussi permettant à des personnes normales d'apprendre le language des signes"
+      }
+    }
+  },
+  "contact": {
+    "title": "Contactez-moi",
+    "subtitle": "Vous avez un projet en tête ? N'hésitez pas à me contacter pour en discuter.",
+    "myDetails": "Mes coordonnées",
+    "email": "Email",
+    "phone": "Téléphone",
+    "location": "Localisation",
+    "availability": "Disponibilité",
+    "availabilityValue": "Lun - Ven, 9h - 22h",
+    "sendMessage": "Envoyez-moi un message",
+    "form": {
+      "fullName": "Nom complet",
+      "namePlaceholder": "Votre nom",
+      "email": "Email",
+      "emailPlaceholder": "votre@email.com",
+      "subject": "Sujet",
+      "subjectPlaceholder": "Sujet de votre message",
+      "message": "Message",
+      "messagePlaceholder": "Décrivez votre projet...",
+      "sending": "Envoi en cours...",
+      "send": "Envoyer le message"
+    },
+    "alerts": {
+      "success": "Merci ! Votre message a été envoyé avec succès.",
+      "error": "Oups ! Une erreur est survenue.",
+      "networkError": "Impossible d'envoyer le message pour le moment."
+    }
+  },
+  "footer": {
+    "tagline": "Jeune développeur fullstack & mobil fraichement diplomé, passionné par la création d'application innovantes.",
+    "copyright": "Tous droits réservés."
+  }
+}

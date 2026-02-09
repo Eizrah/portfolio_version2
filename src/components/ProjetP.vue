@@ -1,15 +1,14 @@
 <template>
-  <main class="w-full py-16 bg-gray-100" v-intersect="'is-visible'">
-    <div class="mx-auto px-6 md:max-w-screen-xl">
-      <h2 class="text-4xl font-extrabold text-gray-800 text-center mb-4">
-        Projet personnel
-      </h2>
-      <div class="w-20 h-1 bg-indigo-600 mx-auto mb-12 rounded-full"></div>
-      <p class="text-center text-gray-600 mb-6 texte">
-        Découvrez une section de mes réalisations personnel, alliant des
-        applications desktop,web et mobile
+  <main class="projects-section" v-intersect="'is-visible'">
+    <div class="projects-container">
+      <div class="section-header">
+        <h2 class="section-title">{{ t("projects.title") }}</h2>
+        <div class="title-underline"></div>
+      </div>
+      <p class="section-subtitle texte">
+        {{ t("projects.subtitle") }}
       </p>
-      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+      <div class="projects-grid">
         <cardAff
           class="carte"
           v-for="(projet, index) in projetPerso"
@@ -20,92 +19,148 @@
           :technos="projet.technos"
           :lienProjet="projet.lienProjet"
           :lienGit="projet.lienGit"
+          :style="{ animationDelay: `${0.3 + index * 0.15}s` }"
         />
       </div>
     </div>
   </main>
 </template>
+
 <script setup>
+import { computed } from "vue";
+import { useI18n } from "@/i18n";
 import cardAff from "./block/cardAff.vue";
 import lgImage from "@/assets/LG.png";
 import testImage from "@/assets/test.jpg";
 import image2D from "@/assets/construire_maison.jpg";
 import aipic from "@/assets/ai.jpg";
-const projetPerso = [
+
+const { t } = useI18n();
+
+const projetPerso = computed(() => [
   {
-    titre: "Application E-commerce",
-    description: "Application E-commerce pour la vente de Tennis de sport ",
+    titre: t("projects.items.ecommerceApp.title"),
+    description: t("projects.items.ecommerceApp.description"),
     technos: ["Flutter", "Firebase"],
-    lienGit: "  https://github.com/Eizrah/projet-final-declic-Lv3",
+    lienGit: "https://github.com/Eizrah/projet-final-declic-Lv3",
     image: lgImage,
   },
-
   {
-    titre: "Site E-commerce",
-    description: "Site E-commerce pour la vente de Tennis de sport \n Ceci est la partie front-end",
+    titre: t("projects.items.ecommerceSiteFront.title"),
+    description: t("projects.items.ecommerceSiteFront.description"),
     technos: ["VueJs", "TailwindCss"],
     lienGit: "https://github.com/Eizrah/EcommerveFront/",
     image: lgImage,
   },
-
   {
-    titre: "Site E-commerce",
-    description:
-      "Site E-commerce pour la vente de Tennis de sport \n Ceci est la partie back-end \n coté back-end en cour de developpement",
-    technos: [ "Django", "Mysql"],
-
-    lienGit: "  https://github.com/Eizrah/SI_E_Shop/",
+    titre: t("projects.items.ecommerceSiteBack.title"),
+    description: t("projects.items.ecommerceSiteBack.description"),
+    technos: ["Django", "Mysql"],
+    lienGit: "https://github.com/Eizrah/SI_E_Shop/",
     image: testImage,
   },
   {
-    titre: "Plan en 2D",
-    description:
-      "Logiciel fais en Java pour la construction d'un plan d'une maison en 2D ",
+    titre: t("projects.items.plan2D.title"),
+    description: t("projects.items.plan2D.description"),
     technos: ["Java", "Swing"],
-
     lienGit: "https://github.com/Eizrah/Java2DM12025",
     image: image2D,
   },
   {
-    titre: "ML pour les personnes muettes",
-    description:
-      "c'est un projet de machine learning pour aider les personnes muettes à communiquer mais aussi permettant à des personnes normales d'apprendre le language des signes ",
-    technos: ["Python", "MediaPipe","OpenCV","CustomTkinter","Pillow","Panda & Scikit-learn","Pyttsx3"],
-
+    titre: t("projects.items.mlMute.title"),
+    description: t("projects.items.mlMute.description"),
+    technos: ["Python", "MediaPipe", "OpenCV", "CustomTkinter"],
     lienGit: "https://github.com/Eizrah/Machine_L_IHM",
     image: aipic,
   },
-];
+]);
 </script>
+
 <style scoped>
-@keyframes slideY {
+.projects-section {
+  padding: 6rem 2rem;
+  background: transparent;
+  transition: background 0.3s ease;
+}
+
+.projects-container {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.section-header {
+  text-align: center;
+  margin-bottom: 1.5rem;
+}
+
+.section-title {
+  font-size: 2.5rem;
+  font-weight: 800;
+  background: linear-gradient(135deg, var(--accent-cyan), var(--accent-purple));
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  margin-bottom: 1rem;
+}
+
+.title-underline {
+  width: 80px;
+  height: 4px;
+  background: linear-gradient(90deg, var(--accent-cyan), var(--accent-purple));
+  margin: 0 auto;
+  border-radius: 2px;
+}
+
+.section-subtitle {
+  text-align: center;
+  color: var(--text-secondary);
+  margin-bottom: 3rem;
+  font-size: 1.1rem;
+  max-width: 600px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.projects-grid {
+  display: grid;
+  grid-template-columns: repeat(1, 1fr);
+  gap: 2rem;
+}
+
+@media screen and (min-width: 768px) {
+  .projects-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media screen and (min-width: 1024px) {
+  .projects-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+/* Animations */
+.texte,
+.carte {
+  opacity: 0;
+}
+
+@keyframes fadeUp {
   from {
     opacity: 0;
-    transform: translateY(-100%);
+    transform: translateY(30px);
   }
   to {
     opacity: 1;
     transform: translateY(0);
   }
 }
-@keyframes floutage {
-  from {
-    opacity: 0;
-    filter: blur(10px);
-  }
-  to {
-    opacity: 1;
-    filter: blur(0);
-  }
-}
-.carte,
-.texte {
-  opacity: 0;
-}
-.is-visible .carte {
-  animation: floutage 1s forwards 0.7s;
-}
+
 .is-visible .texte {
-  animation: slideY 1s forwards 0.3s;
+  animation: fadeUp 0.8s ease forwards 0.2s;
+}
+
+.is-visible .carte {
+  animation: fadeUp 0.8s ease forwards;
 }
 </style>

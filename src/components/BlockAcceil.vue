@@ -1,257 +1,347 @@
 <script setup>
-  const publicPath = process.env.BASE_URL;
+import { useI18n } from "@/i18n";
+const { t } = useI18n();
+const publicPath = process.env.BASE_URL;
 </script>
+
 <template>
-  <main class="accueil-main" v-intersect="'is-visible'">
-    <section class="blabla">
-      <p class="acceuil accueil-texte">
-        Bonjour, je suis FREDERIC Eizrah
-        <span class="accueil-titre"> Developpeur Fullstack & Mobil </span>
-      </p>
+  <main class="hero-section" v-intersect="'is-visible'">
+    <div class="hero-bg-gradient"></div>
+    <div class="hero-grid"></div>
 
-      <div class="butt accueil-boutons">
-        <!-- <a id="cv" href="/cv/monCV.pdf" download>Telecharger mon CV</a> -->
-        <a id="cv" :href="`${publicPath}cv/monCV.pdf`" download="monCV.pdf">
-          Telecharger mon CV
-        </a>
+    <section class="hero-content">
+      <div class="hero-text">
+        <p class="hero-greeting accueil-texte">
+          {{ t("home.greeting") }}
+        </p>
+        <h1 class="hero-title accueil-titre">
+          {{ t("home.title") }}
+        </h1>
 
-        <a id="contact" href="#contactme">Me Contacter</a>
+        <div class="hero-buttons accueil-boutons">
+          <a
+            class="btn-primary"
+            :href="`${publicPath}cv/monCV.pdf`"
+            download="monCV.pdf"
+          >
+            <span class="btn-icon">📄</span>
+            {{ t("home.downloadCV") }}
+          </a>
+          <a class="btn-secondary" href="#contactme">
+            <span class="btn-icon">💬</span>
+            {{ t("home.contactMe") }}
+          </a>
+        </div>
+
+        <ul class="hero-socials accueil-socials">
+          <li>
+            <a
+              href="https://github.com/Eizrah"
+              target="_blank"
+              class="social-link"
+            >
+              <font-awesome-icon icon="fa-brands fa-github" />
+            </a>
+          </li>
+          <li>
+            <a
+              href="https://wa.me/261348266319"
+              target="_blank"
+              class="social-link"
+            >
+              <font-awesome-icon icon="fa-brands fa-whatsapp" />
+            </a>
+          </li>
+          <li>
+            <a href="mailto:eizrahfdr@gmail.com" class="social-link">
+              <font-awesome-icon icon="fa-solid fa-envelope" />
+            </a>
+          </li>
+        </ul>
       </div>
 
-      <ul class="accueil-socials">
-        <li>
-          <a href="https://github.com/Eizrah">
-            <font-awesome-icon icon="fa-brands fa-github" />
-          </a>
-        </li>
-        <li>
-          <a href="https://wa.me/261348266319">
-            <font-awesome-icon icon="fa-brands fa-whatsapp" />
-          </a>
-        </li>
-        <li>
-          <a href="mailto:eizrahfdr@gmail.com">
-            <font-awesome-icon icon="fa-solid fa-envelope" />
-          </a>
-        </li>
-      </ul>
-    </section>
-
-    <section class="photo">
-      <img
-        src="@/assets/sans_fond.webp"
-        alt="photo de profil"
-        class="accueil-photo"
-      />
+      <div class="hero-image-container">
+        <div class="hero-image-glow"></div>
+        <img
+          src="@/assets/sans_fond.webp"
+          alt="photo de profil"
+          class="hero-image accueil-photo"
+        />
+      </div>
     </section>
   </main>
 </template>
 
 <style scoped>
-.accueil-main {
-  background-color: #f6f5ff;
+.hero-section {
+  position: relative;
+  min-height: 100vh;
   display: flex;
-  flex-direction: column;
-  justify-content: center;
   align-items: center;
-  margin: 0 auto;
+  justify-content: center;
+  padding: 100px 2rem 2rem;
+  overflow: hidden;
+  transition: background 0.3s ease;
+}
+
+.hero-bg-gradient {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: radial-gradient(
+      ellipse at 20% 20%,
+      rgba(0, 217, 255, 0.12) 0%,
+      transparent 50%
+    ),
+    radial-gradient(
+      ellipse at 80% 80%,
+      rgba(139, 92, 246, 0.12) 0%,
+      transparent 50%
+    );
+  pointer-events: none;
+}
+
+.hero-grid {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-image: linear-gradient(var(--border-color) 1px, transparent 1px),
+    linear-gradient(90deg, var(--border-color) 1px, transparent 1px);
+  background-size: 50px 50px;
+  pointer-events: none;
+  opacity: 0.5;
+}
+
+.hero-content {
+  display: flex;
+  flex-direction: column-reverse;
+  align-items: center;
+  gap: 3rem;
+  max-width: 1200px;
   width: 100%;
-  padding: 40px 16px;
-  min-height: calc(100vh - 45px - 130px);
+  z-index: 1;
 }
 
 @media screen and (min-width: 768px) {
-  .accueil-main {
+  .hero-content {
     flex-direction: row;
-    padding: 0;
+    justify-content: space-between;
   }
 }
 
-.blabla {
-  width: 100%;
-  order: 2;
+.hero-text {
   text-align: center;
-  padding: 0 16px;
+  flex: 1;
 }
 
 @media screen and (min-width: 768px) {
-  .blabla {
-    width: 50%;
-    order: 1;
+  .hero-text {
     text-align: left;
   }
 }
 
-.accueil-texte {
-  font-size: 2.25rem;
-  font-weight: bold;
-  margin-top: 20px;
-  margin-bottom: 24px;
-}
-@media screen and (min-width: 640px) {
-  .accueil-texte {
-    font-size: 3rem;
-  }
-}
-.accueil-texte {
-  opacity: 0;
+.hero-greeting {
+  font-size: 1.5rem;
+  color: var(--text-primary);
+  margin-bottom: 0.5rem;
+  font-weight: 500;
 }
 
-.accueil-titre {
-  display: block;
-  font-size: 1.875rem;
+@media screen and (min-width: 768px) {
+  .hero-greeting {
+    font-size: 2rem;
+  }
+}
+
+.hero-title {
+  font-size: 2rem;
   font-weight: 800;
-  margin-top: 4px;
-
-  background-image: linear-gradient(to right, #3971ec, #8f35ea);
+  background: linear-gradient(
+    135deg,
+    var(--accent-cyan),
+    var(--accent-purple),
+    var(--accent-pink)
+  );
+  background-size: 200% auto;
   -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
   background-clip: text;
-  color: transparent;
-}
-@media screen and (min-width: 640px) {
-  .accueil-titre {
-    font-size: 2.25rem;
-  }
-}
-.butt {
-  display: flex;
-  justify-content: center;
-  gap: 1.5rem;
-  margin-top: 1.5rem;
+  -webkit-text-fill-color: transparent;
+  animation: gradientShift 3s ease infinite;
   margin-bottom: 2rem;
 }
+
 @media screen and (min-width: 768px) {
-  .butt {
+  .hero-title {
+    font-size: 2.5rem;
+  }
+}
+
+@keyframes gradientShift {
+  0%,
+  100% {
+    background-position: 0% center;
+  }
+  50% {
+    background-position: 100% center;
+  }
+}
+
+.hero-buttons {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  justify-content: center;
+  margin-bottom: 2rem;
+}
+
+@media screen and (min-width: 768px) {
+  .hero-buttons {
     justify-content: flex-start;
   }
 }
-.accueil-boutons {
-  opacity: 0;
-}
 
-#cv {
+.btn-primary {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.875rem 1.75rem;
+  background: linear-gradient(135deg, var(--accent-cyan), var(--accent-purple));
   color: white;
-  padding: 0.75rem 1.5rem;
-  border-radius: 0.5rem;
-  cursor: pointer;
-  border: none;
-  border: none;
   font-weight: 600;
-  display: inline-block;
+  border-radius: 12px;
   text-decoration: none;
-
-  background-image: linear-gradient(
-    to right,
-    #3971ec 0%,
-    #8f35ea 50%,
-    #3971ec 100%
-  );
-  background-size: 200% auto;
-
-  transition: background-position 0.5s ease-out, transform 0.3s ease-in-out;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 20px rgba(0, 217, 255, 0.3);
 }
-#cv:hover {
-  background-position: -100% 0;
-  transform: scale(1.05);
+
+.btn-primary:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 8px 30px rgba(0, 217, 255, 0.5);
 }
-#cv:active {
-  transform: scale(0.9);
+
+.btn-secondary {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.875rem 1.75rem;
+  background: var(--bg-card);
+  border: 1px solid var(--border-color);
+  color: var(--text-primary);
+  font-weight: 600;
+  border-radius: 12px;
+  text-decoration: none;
   transition: all 0.3s ease;
 }
 
-#contact {
-  background-color: white;
-  color: #111827;
-  padding: 0.75rem 1.5rem;
-  border-radius: 0.5rem;
-  cursor: pointer;
-  border: 1px solid #e5e7eb;
-  border: 1px solid #e5e7eb;
-  font-weight: 600;
-  display: inline-block;
-  text-decoration: none;
-
-  transition: transform 0.3s ease-out, box-shadow 0.3s ease-out;
-}
-#contact:hover {
-  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1),
-    0 2px 4px -2px rgba(0, 0, 0, 0.1);
-  transform: scale(1.05);
-}
-#contact:active {
-  transform: scale(0.9);
+.btn-secondary:hover {
+  border-color: var(--accent-cyan);
+  transform: translateY(-3px);
 }
 
-.accueil-socials {
+.hero-socials {
   list-style: none;
   padding: 0;
+  margin: 0;
   display: flex;
-  justify-content: center;
   gap: 1rem;
-  margin-top: 1.5rem;
-  margin-bottom: 2.5rem; /* mb-10 */
-}
-@media screen and (min-width: 768px) {
-  .accueil-socials {
-    justify-content: flex-start;
-    margin-bottom: 0;
-  }
-}
-.accueil-socials {
-  opacity: 0;
-}
-
-.accueil-socials a {
-  color: #111827;
-  font-size: 1.5rem;
-  transition: all 0.3s ease-out;
-}
-.accueil-socials a:hover {
-  color: #3971ec;
-  transform: scale(1.1);
-}
-.accueil-socials a:active {
-  transform: scale(0.9);
-}
-
-.photo {
-  width: 100%;
-  order: 1;
-  display: flex;
   justify-content: center;
-  align-items: center;
 }
+
 @media screen and (min-width: 768px) {
-  .photo {
-    width: 50%;
-    order: 2;
+  .hero-socials {
+    justify-content: flex-start;
   }
 }
 
-.accueil-photo {
-  width: 60%;
-  max-width: 384px;
-  height: auto;
-  aspect-ratio: 1 / 1;
-  object-fit: cover;
-  border-radius: 9999px;
-  border: 4px solid #8f35ea;
-  box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1),
-    0 8px 10px -6px rgba(0, 0, 0, 0.1);
-  margin-top: 40px;
-  opacity: 0;
+.social-link {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 48px;
+  height: 48px;
+  border-radius: 12px;
+  background: var(--bg-card);
+  border: 1px solid var(--border-color);
+  color: var(--text-secondary);
+  font-size: 1.25rem;
+  transition: all 0.3s ease;
 }
-@media screen and (min-width: 768px) {
-  .accueil-photo {
-    margin-top: 0;
+
+.social-link:hover {
+  color: var(--accent-cyan);
+  border-color: var(--accent-cyan);
+  transform: translateY(-3px);
+  box-shadow: 0 4px 20px rgba(0, 217, 255, 0.2);
+}
+
+.hero-image-container {
+  position: relative;
+  flex-shrink: 0;
+}
+
+.hero-image-glow {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 120%;
+  height: 120%;
+  background: radial-gradient(
+    circle,
+    rgba(0, 217, 255, 0.25) 0%,
+    rgba(139, 92, 246, 0.15) 40%,
+    transparent 70%
+  );
+  filter: blur(40px);
+  animation: pulse 4s ease-in-out infinite;
+}
+
+@keyframes pulse {
+  0%,
+  100% {
+    opacity: 0.5;
+    transform: translate(-50%, -50%) scale(1);
   }
+  50% {
+    opacity: 0.8;
+    transform: translate(-50%, -50%) scale(1.1);
+  }
+}
+
+.hero-image {
+  position: relative;
+  width: 280px;
+  height: 280px;
+  object-fit: cover;
+  border-radius: 50%;
+  border: 3px solid var(--accent-cyan);
+  box-shadow: 0 0 40px rgba(0, 217, 255, 0.3);
+}
+
+@media screen and (min-width: 768px) {
+  .hero-image {
+    width: 350px;
+    height: 350px;
+  }
+}
+
+/* Animations */
+.accueil-texte,
+.accueil-titre,
+.accueil-boutons,
+.accueil-socials,
+.accueil-photo {
+  opacity: 0;
 }
 
 @keyframes slideUp {
   from {
     opacity: 0;
-    transform: translateY(50px);
+    transform: translateY(30px);
   }
   to {
     opacity: 1;
@@ -259,42 +349,28 @@
   }
 }
 
-@keyframes slideLeft {
+@keyframes fadeIn {
   from {
     opacity: 0;
-    transform: translateX(100px);
   }
   to {
     opacity: 1;
-    transform: translateX(0);
   }
 }
 
 .is-visible .accueil-texte {
-  animation: slideUp 1s forwards 0.3s;
+  animation: slideUp 0.8s ease forwards 0.2s;
+}
+.is-visible .accueil-titre {
+  animation: slideUp 0.8s ease forwards 0.4s;
 }
 .is-visible .accueil-boutons {
-  animation: slideUp 1s forwards 0.6s;
+  animation: slideUp 0.8s ease forwards 0.6s;
 }
-
 .is-visible .accueil-socials {
-  animation: slideUp 1s forwards 0.9s;
+  animation: slideUp 0.8s ease forwards 0.8s;
 }
 .is-visible .accueil-photo {
-  animation: slideLeft 1.5s forwards;
+  animation: fadeIn 1s ease forwards 0.3s;
 }
 </style>
-
-<!-- <script setup>
-import { ref } from "vue";
-
-const isMenuOpen = ref(false);
-
-const toggleMenu = () => {
-  isMenuOpen.value = !isMenuOpen.value;
-};
-
-const closeMenu = () => {
-  isMenuOpen.value = false;
-};
-</script> -->

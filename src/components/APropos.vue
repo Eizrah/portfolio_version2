@@ -1,98 +1,78 @@
 <template>
-  <main
-    id="apropos"
-    class="container mx-auto px-6 py-16"
-    v-intersect="'is-visible'"
-  >
-    <h2 class="text-4xl font-extrabold text-gray-800 text-center mb-4">
-      À propos de moi
-    </h2>
-    <div class="w-20 h-1 bg-indigo-600 mx-auto mb-12 rounded-full"></div>
+  <main id="apropos" class="about-section" v-intersect="'is-visible'">
+    <div class="about-container">
+      <div class="section-header">
+        <h2 class="section-title">{{ t("about.title") }}</h2>
+        <div class="title-underline"></div>
+      </div>
 
-    <div class="flex flex-col md:flex-row gap-12 items-start">
-      <section class="blabla md:w-1/2">
-        <h4
-          class="text-2xl font-semibold mb-6 text-gray-700 leading-relaxed titre4"
-        >
-          Diplômé en informatique, spécialisé en developpement web fullstack et
-          mobile
-        </h4>
-        <p class="mb-4 text-gray-600 leading-relaxed texte4">
-          Titulaire d'une licence, je suis actuellement en Master 1 à
-          l'université de Barikadimy. Je suis développeur Web Fullstack,
-          utilisant Vue.js pour le frontend et Django pour le backend.
-        </p>
-        <p class="mb-8 text-gray-600 leading-relaxed texte4">
-          Je suis également développeur mobile avec Flutter. Grâce à une
-          formation chez DCLIC, j'ai aussi de solides bases en modélisation
-          (UML).
-        </p>
+      <div class="about-content">
+        <section class="about-text">
+          <h4 class="about-subtitle titre4">
+            {{ t("about.subtitle") }}
+          </h4>
+          <p class="about-paragraph texte4">
+            {{ t("about.paragraph1") }}
+          </p>
+          <p class="about-paragraph texte4">
+            {{ t("about.paragraph2") }}
+          </p>
 
-        <h5
-          class="text-xl font-bold mt-8 mb-4 pb-2 border-b border-indigo-200 text-gray-800 text5"
-        >
-          Compétences technique
-        </h5>
-        <div class="flex flex-wrap gap-3">
-          <div
-            v-for="(skill, index) in skills"
-            :key="skill.name"
-            class="px-4 py-2 font-medium rounded-full text-sm skill-item"
-            :class="skill.class"
-            :style="{ animationDelay: `${0.9 + index * 0.3}s` }"
-          >
-            {{ skill.name }}
-          </div>
-        </div>
-      </section>
-
-      <section
-        class="photo md:w-1/2 flex items-center justify-center min-h-full"
-      >
-        <div
-          class="relative w-full max-w-lg aspect-square bg-gray-200 rounded-lg shadow-xl overflow-hidden"
-        >
-          <transition-group name="fade" tag="div">
+          <h5 class="skills-title text5">
+            {{ t("about.skills") }}
+          </h5>
+          <div class="skills-grid">
             <div
-              v-for="(image, index) in images"
-              :key="index"
-              v-show="currentImageIndex === index"
-              class="absolute inset-0 w-full h-full"
+              v-for="(skill, index) in skills"
+              :key="skill.name"
+              class="skill-item"
+              :style="{ animationDelay: `${0.9 + index * 0.1}s` }"
             >
-              <img
-                :src="image.url"
-                :alt="image.alt"
-                class="w-full h-full object-cover"
-              />
+              {{ skill.name }}
             </div>
-          </transition-group>
-
-          <div
-            class="absolute bottom-4 left-0 right-0 flex justify-center space-x-2"
-          >
-            <span
-              v-for="(image, index) in images"
-              :key="'dot-' + index"
-              @click="currentImageIndex = index"
-              class="w-2.5 h-2.5 rounded-full bg-white opacity-50 cursor-pointer transition-opacity duration-300"
-              :class="{
-                'opacity-100 bg-indigo-500': currentImageIndex === index,
-              }"
-            ></span>
           </div>
-        </div>
-      </section>
+        </section>
+
+        <section class="about-gallery">
+          <div class="gallery-container">
+            <transition-group name="fade" tag="div" class="gallery-wrapper">
+              <div
+                v-for="(image, index) in images"
+                :key="index"
+                v-show="currentImageIndex === index"
+                class="gallery-image-container"
+              >
+                <img :src="image.url" :alt="image.alt" class="gallery-image" />
+              </div>
+            </transition-group>
+
+            <div class="gallery-dots">
+              <span
+                v-for="(image, index) in images"
+                :key="'dot-' + index"
+                @click="currentImageIndex = index"
+                class="gallery-dot"
+                :class="{ active: currentImageIndex === index }"
+              ></span>
+            </div>
+          </div>
+        </section>
+      </div>
     </div>
   </main>
 </template>
+
 <script setup>
 import { ref, onMounted, onUnmounted } from "vue";
+import { useI18n } from "@/i18n";
 import img1 from "@/assets/dev.jpg";
 import img2 from "@/assets/django.jpg";
 import img3 from "@/assets/flutter.jpg";
 import img4 from "@/assets/Java.jpg";
 import img5 from "@/assets/javascript.jpg";
 import img6 from "@/assets/logo.png";
+
+const { t } = useI18n();
 
 const images = ref([
   { url: img1, alt: "Photo de dev" },
@@ -101,50 +81,203 @@ const images = ref([
   { url: img4, alt: "Photo de java" },
   { url: img5, alt: "Photo de javascript" },
   { url: img6, alt: "Photo de vue" },
-  { url: img6, alt: "Photo de vue" },
-  // Ajoutez d'autres images ici
 ]);
 
 const skills = [
-  { name: "Java", class: "bg-red-100 text-red-800" },
-  { name: "Python", class: "bg-blue-100 text-blue-800" },
-  { name: "CustomTkinter", class: "bg-cyan-100 text-cyan-800" },
-  { name: "Django", class: "bg-green-100 text-green-800" },
-  { name: "JavaScript", class: "bg-yellow-100 text-yellow-800" },
-  { name: "Vue.js", class: "bg-teal-100 text-teal-800" },
-  { name: "Flutter", class: "bg-purple-100 text-purple-800" },
-  { name: "MySQL", class: "bg-blue-100 text-blue-800" },
-  { name: "SQLite", class: "bg-pink-100 text-pink-800" },
-  { name: "UML", class: "bg-pink-100 text-pink-800" },
+  { name: "Java" },
+  { name: "Python" },
+  { name: "CustomTkinter" },
+  { name: "Django" },
+  { name: "JavaScript" },
+  { name: "Vue.js" },
+  { name: "Flutter" },
+  { name: "MySQL" },
+  { name: "SQLite" },
+  { name: "UML" },
 ];
 
-//Variable pour suivre l'index de la photo actuellement affichée
 const currentImageIndex = ref(0);
 let intervalId = null;
 
-//Fonction pour passer à l'image suivante
 const nextImage = () => {
   currentImageIndex.value = (currentImageIndex.value + 1) % images.value.length;
 };
 
-//Démarrer le défilement automatique lors du montage du composant
 onMounted(() => {
-  // Changement toutes les 4 secondes (4000 ms)
   intervalId = setInterval(nextImage, 4000);
 });
 
-//Nettoyer l'intervalle lors de la destruction du composant pour éviter les fuites de mémoire
 onUnmounted(() => {
   if (intervalId) {
     clearInterval(intervalId);
   }
 });
 </script>
+
 <style scoped>
-/* Styles de transition pour un effet de fondu */
+.about-section {
+  padding: 6rem 2rem;
+  background: var(--bg-card);
+  transition: background 0.3s ease;
+}
+
+.about-container {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.section-header {
+  text-align: center;
+  margin-bottom: 4rem;
+}
+
+.section-title {
+  font-size: 2.5rem;
+  font-weight: 800;
+  background: linear-gradient(135deg, var(--accent-cyan), var(--accent-purple));
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  margin-bottom: 1rem;
+}
+
+.title-underline {
+  width: 80px;
+  height: 4px;
+  background: linear-gradient(90deg, var(--accent-cyan), var(--accent-purple));
+  margin: 0 auto;
+  border-radius: 2px;
+}
+
+.about-content {
+  display: flex;
+  flex-direction: column;
+  gap: 3rem;
+}
+
+@media screen and (min-width: 768px) {
+  .about-content {
+    flex-direction: row;
+    gap: 4rem;
+  }
+}
+
+.about-text {
+  flex: 1;
+}
+
+.about-subtitle {
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: var(--text-primary);
+  margin-bottom: 1.5rem;
+  line-height: 1.4;
+}
+
+.about-paragraph {
+  color: var(--text-secondary);
+  line-height: 1.8;
+  margin-bottom: 1rem;
+  font-size: 1rem;
+}
+
+.skills-title {
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: var(--accent-cyan);
+  margin-top: 2rem;
+  margin-bottom: 1.5rem;
+  padding-bottom: 0.75rem;
+  border-bottom: 1px solid var(--border-color);
+}
+
+.skills-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+}
+
+.skill-item {
+  padding: 0.5rem 1rem;
+  background: rgba(0, 217, 255, 0.1);
+  border: 1px solid var(--accent-cyan);
+  border-radius: 20px;
+  color: var(--accent-cyan);
+  font-size: 0.875rem;
+  font-weight: 500;
+  transition: all 0.3s ease;
+  opacity: 0;
+}
+
+.skill-item:hover {
+  background: rgba(0, 217, 255, 0.2);
+  box-shadow: 0 0 15px rgba(0, 217, 255, 0.3);
+  transform: translateY(-2px);
+}
+
+.about-gallery {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.gallery-container {
+  position: relative;
+  width: 100%;
+  max-width: 450px;
+  aspect-ratio: 1;
+  border-radius: 16px;
+  overflow: hidden;
+  background: var(--bg-secondary);
+  border: 1px solid var(--border-color);
+  box-shadow: var(--card-shadow);
+}
+
+.gallery-wrapper {
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+
+.gallery-image-container {
+  position: absolute;
+  inset: 0;
+}
+
+.gallery-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.gallery-dots {
+  position: absolute;
+  bottom: 1rem;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  gap: 0.5rem;
+}
+
+.gallery-dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: var(--text-muted);
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.gallery-dot.active {
+  background: var(--accent-cyan);
+  box-shadow: 0 0 10px rgba(0, 217, 255, 0.5);
+}
+
+/* Transitions */
 .fade-enter-active,
 .fade-leave-active {
-  transition: opacity 1.5s ease;
+  transition: opacity 1s ease;
 }
 
 .fade-enter-from,
@@ -156,50 +289,38 @@ onUnmounted(() => {
   position: absolute;
 }
 
-@keyframes slideY {
-  from {
-    opacity: 0;
-    transform: translateY(100px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-@keyframes slideX {
-  from {
-    opacity: 0;
-    transform: translateX(100px);
-  }
-  to {
-    opacity: 1;
-    transform: translateX(0);
-  }
-}
-@keyframes floutage {
-  from {
-    opacity: 0;
-    filter: blur(10px);
-  }
-  to {
-    opacity: 1;
-    filter: blur(0);
-  }
-}
+/* Animations */
 .titre4,
 .texte4,
 .text5,
 .skill-item {
   opacity: 0;
 }
-.is-visible .titre4,
+
+@keyframes fadeSlide {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.is-visible .titre4 {
+  animation: fadeSlide 0.8s ease forwards 0.2s;
+}
+
 .is-visible .texte4 {
-  animation: floutage 1s forwards 0.3s;
+  animation: fadeSlide 0.8s ease forwards 0.4s;
 }
+
 .is-visible .text5 {
-  animation: slideX 1s forwards 0.6s;
+  animation: fadeSlide 0.8s ease forwards 0.6s;
 }
+
 .is-visible .skill-item {
-  animation: slideX 1s forwards; /* Delay is handled inline */
+  animation: fadeSlide 0.6s ease forwards;
 }
 </style>

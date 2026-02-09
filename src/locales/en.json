@@ -1,0 +1,80 @@
+{
+  "nav": {
+    "home": "Home",
+    "about": "About",
+    "projects": "My Projects",
+    "contact": "Contact"
+  },
+  "home": {
+    "greeting": "Hello, I'm FREDERIC Eizrah",
+    "title": "Fullstack & Mobile Developer",
+    "downloadCV": "Download my CV",
+    "contactMe": "Contact Me"
+  },
+  "about": {
+    "title": "About Me",
+    "subtitle": "Computer science graduate, specialized in fullstack web and mobile development",
+    "paragraph1": "Holding a bachelor's degree, I am currently pursuing a Master's degree at Barikadimy University. I am a Fullstack Web Developer, using Vue.js for the frontend and Django for the backend.",
+    "paragraph2": "I am also a mobile developer with Flutter. Thanks to training at DCLIC, I also have solid foundations in modeling (UML).",
+    "skills": "Technical Skills"
+  },
+  "projects": {
+    "title": "Personal Projects",
+    "subtitle": "Discover a selection of my personal achievements, combining desktop, web, and mobile applications",
+    "viewProject": "View project",
+    "items": {
+      "ecommerceApp": {
+        "title": "E-commerce Application",
+        "description": "E-commerce application for selling sports tennis shoes"
+      },
+      "ecommerceSiteFront": {
+        "title": "E-commerce Website",
+        "description": "E-commerce website for selling sports tennis shoes \n This is the front-end part"
+      },
+      "ecommerceSiteBack": {
+        "title": "E-commerce Website",
+        "description": "E-commerce website for selling sports tennis shoes \n This is the back-end part \n Backend under development"
+      },
+      "plan2D": {
+        "title": "2D Floor Plan",
+        "description": "Software made in Java for building a 2D house floor plan"
+      },
+      "mlMute": {
+        "title": "ML for Deaf/Mute People",
+        "description": "A machine learning project to help mute people communicate and also allow normal people to learn sign language"
+      }
+    }
+  },
+  "contact": {
+    "title": "Contact Me",
+    "subtitle": "Have a project in mind? Don't hesitate to contact me to discuss it.",
+    "myDetails": "My Contact Details",
+    "email": "Email",
+    "phone": "Phone",
+    "location": "Location",
+    "availability": "Availability",
+    "availabilityValue": "Mon - Fri, 9am - 10pm",
+    "sendMessage": "Send me a message",
+    "form": {
+      "fullName": "Full Name",
+      "namePlaceholder": "Your name",
+      "email": "Email",
+      "emailPlaceholder": "your@email.com",
+      "subject": "Subject",
+      "subjectPlaceholder": "Subject of your message",
+      "message": "Message",
+      "messagePlaceholder": "Describe your project...",
+      "sending": "Sending...",
+      "send": "Send message"
+    },
+    "alerts": {
+      "success": "Thank you! Your message has been sent successfully.",
+      "error": "Oops! An error occurred.",
+      "networkError": "Unable to send the message at this time."
+    }
+  },
+  "footer": {
+    "tagline": "Young fullstack & mobile developer, recently graduated, passionate about creating innovative applications.",
+    "copyright": "All rights reserved."
+  }
+}

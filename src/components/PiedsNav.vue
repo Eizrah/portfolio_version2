@@ -1,119 +1,137 @@
 <template>
-  <footer>
-    <h3>F.Eizrah</h3>
-    <p>
-      Jeune développeur fullstack & mobil fraichement diplomé, passionné par la
-      création d'application innovantes.
-    </p>
-    <ul>
-      <li>
-        <a href="https://github.com/Eizrah" class="social-link">
-          <font-awesome-icon icon="fa-brands fa-github" />
-        </a>
-      </li>
+  <footer class="footer">
+    <div class="footer-container">
+      <div class="footer-content">
+        <h3 class="footer-logo">F.Eizrah</h3>
+        <p class="footer-tagline">
+          {{ t("footer.tagline") }}
+        </p>
 
-      <li>
-        <!-- <button>
-          <font-awesome-icon icon="fa-brands fa-linkedin" />
-        </button> -->
-      </li>
+        <ul class="footer-socials">
+          <li>
+            <a
+              href="https://github.com/Eizrah"
+              target="_blank"
+              class="social-link"
+            >
+              <font-awesome-icon icon="fa-brands fa-github" />
+            </a>
+          </li>
+          <li>
+            <a
+              href="https://wa.me/261348266319"
+              target="_blank"
+              class="social-link"
+            >
+              <font-awesome-icon icon="fa-brands fa-whatsapp" />
+            </a>
+          </li>
+          <li>
+            <a href="mailto:eizrahfdr@gmail.com" class="social-link">
+              <font-awesome-icon icon="fa-solid fa-envelope" />
+            </a>
+          </li>
+        </ul>
+      </div>
 
-      <li>
-        <a href="https://wa.me/261348266319" class="social-link">
-          <font-awesome-icon icon="fa-brands fa-whatsapp" />
-        </a>
-      </li>
+      <div class="footer-divider"></div>
 
-      <li>
-        <a href="mailto:eizrahfdr@gmail.com" class="social-link">
-          <font-awesome-icon icon="fa-solid fa-envelope" />
-        </a>
-      </li>
-    </ul>
-    <div class="barVide">
-      <hr />
+      <p class="footer-copyright">
+        &copy; {{ new Date().getFullYear() }} F.Eizrah.
+        {{ t("footer.copyright") }}
+      </p>
     </div>
-    <p class="copyright">
-      &copy; {{ new Date().getFullYear() }} F.Eizrah. Tous droits réservés.
-    </p>
   </footer>
 </template>
 
+<script setup>
+import { useI18n } from "@/i18n";
+
+const { t } = useI18n();
+</script>
+
 <style scoped>
-hr {
-  opacity: 0.5;
+.footer {
+  background: var(--bg-primary);
+  border-top: 1px solid var(--border-color);
+  padding: 3rem 2rem 1.5rem;
+  transition: background 0.3s ease;
 }
-.barVide {
-  width: 90%;
+
+.footer-container {
+  max-width: 1200px;
   margin: 0 auto;
-}
-.copyright {
-  margin-bottom: 10px;
-}
-
-footer {
-  background-color: #111827;
-  display: flex;
-  flex-direction: column;
-  position: relative;
-  bottom: 0;
-  width: 100%;
-  justify-content: center;
-  align-items: center;
-  color: #fff;
-  font-size: 0.9rem;
   text-align: center;
-  overflow: hidden;
-  /* padding-right: 1rem; */
-}
-/* Réduire l'espace sous la description */
-footer > p:nth-of-type(1) {
-  margin: 5px 0 10px;
 }
 
-h3 {
-  margin: 10px 0 0;
-
-  font-size: 1.2rem;
-  color: #9394fb;
+.footer-content {
+  margin-bottom: 1.5rem;
 }
 
-ul {
+.footer-logo {
+  font-size: 1.75rem;
+  font-weight: 800;
+  background: linear-gradient(135deg, var(--accent-cyan), var(--accent-purple));
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  margin-bottom: 0.75rem;
+}
+
+.footer-tagline {
+  color: var(--text-secondary);
+  font-size: 0.95rem;
+  max-width: 400px;
+  margin: 0 auto 1.5rem;
+  line-height: 1.6;
+}
+
+.footer-socials {
+  list-style: none;
   padding: 0;
-  margin: 10px 0;
-
+  margin: 0;
   display: flex;
   justify-content: center;
-  align-items: center;
-  gap: 15px;
-}
-
-ul li {
-  list-style: none;
-  display: flex;
-  margin: 0;
+  gap: 0.75rem;
 }
 
 .social-link {
-  border: none;
-  background-color: transparent;
-  cursor: pointer;
-  color: #fff;
-  font-size: 1.5rem;
-  transition: color 0.3s ease;
-  display: inline-block; /* Essential for transforms */
-  text-decoration: none; /* Ensure no underline */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 42px;
+  height: 42px;
+  background: transparent;
+  border: 1px solid var(--border-color);
+  border-radius: 10px;
+  color: var(--text-secondary);
+  font-size: 1.1rem;
+  transition: all 0.3s ease;
 }
 
 .social-link:hover {
-  color: #007bff;
-  transform: scale(1.1);
-  transition: all 0.3s ease;
+  background: rgba(0, 217, 255, 0.1);
+  border-color: var(--accent-cyan);
+  color: var(--accent-cyan);
+  transform: translateY(-3px);
+  box-shadow: 0 4px 15px rgba(0, 217, 255, 0.2);
 }
 
-.social-link:active {
-  color: #007bff;
-  transform: scale(0.9);
-  transition: all 0.3s ease;
+.footer-divider {
+  height: 1px;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    var(--accent-cyan),
+    var(--accent-purple),
+    transparent
+  );
+  margin: 1.5rem 0;
+  opacity: 0.3;
+}
+
+.footer-copyright {
+  color: var(--text-muted);
+  font-size: 0.85rem;
 }
 </style>

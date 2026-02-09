@@ -1,5 +1,5 @@
 <template>
-  <nav>
+  <nav class="navbar">
     <div
       class="menu-toggle"
       :class="{ active: isMenuOpen }"
@@ -9,44 +9,81 @@
       <span></span>
       <span></span>
     </div>
-    <p>
-      <strong> F.Eizrah </strong>
+    <p class="logo">
+      <strong>F.Eizrah</strong>
     </p>
-    <!-- Suppression du v-if et de transition, on gère l'affichage par CSS -->
     <ul :class="['nav-links', { open: isMenuOpen }]">
-      <li><a @click="closeMenu" href="#home">Accueil</a></li>
       <li>
-        <a @click="closeMenu" href="#apropos">À propos</a>
+        <a @click="closeMenu" href="#home">{{ t("nav.home") }}</a>
       </li>
       <li>
-        <a @click="closeMenu" href="#projetp">Mes Projets</a>
+        <a @click="closeMenu" href="#apropos">{{ t("nav.about") }}</a>
       </li>
       <li>
-        <a @click="closeMenu" href="#contactme">Contact</a>
+        <a @click="closeMenu" href="#projetp">{{ t("nav.projects") }}</a>
+      </li>
+      <li>
+        <a @click="closeMenu" href="#contactme">{{ t("nav.contact") }}</a>
+      </li>
+      <li class="toggle-mobile">
+        <div class="toggle-group-mobile">
+          <button
+            class="theme-btn"
+            @click="toggleTheme"
+            :title="isDarkMode ? 'Mode clair' : 'Mode sombre'"
+          >
+            <span class="theme-icon">{{ isDarkMode ? "☀️" : "🌙" }}</span>
+          </button>
+          <button class="lang-btn" @click="toggleLocale">
+            <span class="flag">{{ locale === "fr" ? "🇬🇧" : "🇫🇷" }}</span>
+            <span class="lang-text">{{ locale === "fr" ? "EN" : "FR" }}</span>
+          </button>
+        </div>
       </li>
     </ul>
+    <div class="nav-actions">
+      <button
+        class="theme-btn"
+        @click="toggleTheme"
+        :title="isDarkMode ? 'Mode clair' : 'Mode sombre'"
+      >
+        <span class="theme-icon">{{ isDarkMode ? "☀️" : "🌙" }}</span>
+      </button>
+      <button class="lang-btn" @click="toggleLocale">
+        <span class="flag">{{ locale === "fr" ? "🇬🇧" : "🇫🇷" }}</span>
+        <span class="lang-text">{{ locale === "fr" ? "EN" : "FR" }}</span>
+      </button>
+    </div>
   </nav>
 </template>
 
 <style scoped>
-strong {
-  font-size: x-large;
-  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
-  font-weight: bold;
-  background-image: linear-gradient(45deg, #3971ec, #8f35ea);
-  -webkit-background-clip: text;
-  background-clip: text;
-  -webkit-text-fill-color: transparent;
-  padding-top: 1rem;
-}
-nav {
-  position: relative;
+.navbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
   display: flex;
   flex-direction: row;
   justify-content: space-between;
-  margin-left: 1rem;
-  padding: 0.5rem 0;
-  height: auto;
+  align-items: center;
+  padding: 1rem 2rem;
+  background: var(--nav-bg);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border-bottom: 1px solid var(--border-color);
+  z-index: 1000;
+  transition: background 0.3s ease;
+}
+
+.logo strong {
+  font-size: 1.5rem;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  font-weight: 800;
+  background: linear-gradient(135deg, var(--accent-cyan), var(--accent-purple));
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
 }
 
 .menu-toggle {
@@ -59,12 +96,12 @@ nav {
 }
 
 .menu-toggle span {
-  height: 3px;
+  height: 2px;
   width: 25px;
-  background-color: #333;
+  background: linear-gradient(90deg, var(--accent-cyan), var(--accent-purple));
   margin: 4px 0;
   border-radius: 2px;
-  transition: transform 0.3s ease, background-color 0.3s ease;
+  transition: all 0.3s ease;
 }
 
 .menu-toggle.active span:nth-child(1) {
@@ -83,33 +120,32 @@ ul.nav-links {
   list-style: none;
   display: flex;
   justify-content: end;
-  gap: 20px;
-
-  margin-left: 1rem;
-  margin-right: 2rem;
-  border-radius: 5px;
-  max-width: 1300px;
-
+  gap: 2rem;
+  margin: 0;
+  padding: 0;
   align-items: center;
 }
 
 ul li a {
   text-decoration: none;
-  color: #333;
-  font-weight: bold;
-  font-size: 1.2em;
+  color: var(--text-secondary);
+  font-weight: 500;
+  font-size: 0.95rem;
   position: relative;
+  transition: all 0.3s ease;
+  letter-spacing: 0.5px;
 }
 
 ul li a::after {
   content: "";
   position: absolute;
-  bottom: 0;
+  bottom: -4px;
   left: 0;
   width: 0;
   height: 2px;
-  background-color: #007bff;
+  background: linear-gradient(90deg, var(--accent-cyan), var(--accent-purple));
   transition: width 0.3s ease;
+  border-radius: 1px;
 }
 
 ul li a:hover::after {
@@ -117,34 +153,125 @@ ul li a:hover::after {
 }
 
 ul li a:hover {
-  color: #007bff;
-  font-size: 1.5rem;
+  color: var(--accent-cyan);
+}
+
+.nav-actions {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+/* Theme Toggle Button */
+.theme-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 42px;
+  height: 42px;
+  border: 1px solid var(--border-color);
+  border-radius: 12px;
+  background: transparent;
+  cursor: pointer;
   transition: all 0.3s ease;
 }
 
+.theme-btn:hover {
+  background: rgba(0, 217, 255, 0.1);
+  border-color: var(--accent-cyan);
+  transform: scale(1.05);
+}
+
+.theme-icon {
+  font-size: 1.25rem;
+}
+
+/* Language Toggle Button */
+.lang-btn {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 8px 16px;
+  border: 1px solid var(--border-color);
+  border-radius: 12px;
+  background: transparent;
+  color: var(--text-secondary);
+  font-weight: 600;
+  font-size: 0.85rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.lang-btn:hover {
+  background: rgba(0, 217, 255, 0.1);
+  border-color: var(--accent-cyan);
+  color: var(--accent-cyan);
+  transform: scale(1.05);
+}
+
+.lang-btn .flag {
+  font-size: 1rem;
+}
+
+.toggle-mobile {
+  display: none;
+}
+
 @media (max-width: 768px) {
+  .navbar {
+    padding: 0.75rem 1rem;
+  }
+
   .menu-toggle {
     display: flex;
+  }
+
+  .nav-actions {
+    display: none;
+  }
+
+  .toggle-mobile {
+    display: block;
+    margin-top: 1rem;
+    padding-top: 1rem;
+    border-top: 1px solid var(--border-color);
+    width: 100%;
+  }
+
+  .toggle-group-mobile {
+    display: flex;
+    gap: 0.75rem;
+    width: 100%;
+  }
+
+  .toggle-group-mobile .theme-btn {
+    flex: 0 0 auto;
+  }
+
+  .toggle-group-mobile .lang-btn {
+    flex: 1;
+    justify-content: center;
   }
 
   ul.nav-links {
     flex-direction: column;
     align-items: flex-start;
-    position: absolute;
-    top: 50px;
+    position: fixed;
+    top: 60px;
     left: 0;
-    background-color: #f8f9fa;
-    padding: 20px;
-    width: 200px;
-    height: auto;
-    border-right: 1px solid #ccc;
-    box-shadow: 2px 2px 8px rgba(0, 0, 0, 0.1);
-    z-index: 1000;
-    display: none;
+    background: var(--nav-bg);
+    backdrop-filter: blur(20px);
+    padding: 1.5rem;
+    width: 280px;
+    height: calc(100vh - 60px);
+    border-right: 1px solid var(--border-color);
+    transform: translateX(-100%);
+    transition: transform 0.3s ease;
+    gap: 0;
   }
 
   ul.nav-links.open {
-    display: flex;
+    transform: translateX(0);
   }
 
   ul li {
@@ -154,21 +281,19 @@ ul li a:hover {
   ul li a {
     display: block;
     width: 100%;
-    padding: 8px 0;
-    font-size: 1.2em;
-  }
-  strong {
-    margin-right: 1rem;
-  }
-  ul.nav-links {
-    /* Nouvelle position si le nav est plus petit */
-    top: 45px;
+    padding: 1rem 0;
+    font-size: 1.1rem;
   }
 }
 </style>
 
 <script setup>
 import { ref } from "vue";
+import { useI18n } from "@/i18n";
+import { useTheme } from "@/theme";
+
+const { t, locale, toggleLocale } = useI18n();
+const { isDarkMode, toggleTheme } = useTheme();
 
 const isMenuOpen = ref(false);
 
