@@ -109,7 +109,7 @@ defineProps({
     transparent 0%,
     var(--bg-primary) 100%
   );
-  opacity: 0.8;
+  opacity: 0.4;
 }
 
 .card-content {

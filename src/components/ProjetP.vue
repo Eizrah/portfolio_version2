@@ -34,7 +34,8 @@ import lgImage from "@/assets/LG.png";
 import testImage from "@/assets/test.jpg";
 import image2D from "@/assets/construire_maison.jpg";
 import aipic from "@/assets/ai.jpg";
-
+import fanampy from "@/assets/3dev.jpg";
+import santemada from "@/assets/santemada.png";
 const { t } = useI18n();
 
 const projetPerso = computed(() => [
@@ -72,6 +73,20 @@ const projetPerso = computed(() => [
     technos: ["Python", "MediaPipe", "OpenCV", "CustomTkinter"],
     lienGit: "https://github.com/Eizrah/Machine_L_IHM",
     image: aipic,
+  },
+  {
+    titre: t("projects.items.fanampy.title"),
+    description: t("projects.items.fanampy.description"),
+    technos: ["Dart", "Flutter"],
+    lienGit: "https://github.com/Eizrah/fagnampy.git",
+    image: fanampy,
+  },
+  {
+    titre: t("projects.items.santemada.title"),
+    description: t("projects.items.santemada.description"),
+    technos: ["Dart", "Flutter"],
+    lienGit: "https://github.com/Eizrah/SanteMada.git",
+    image: santemada,
   },
 ]);
 </script>

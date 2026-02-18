@@ -20,6 +20,9 @@
         <a @click="closeMenu" href="#apropos">{{ t("nav.about") }}</a>
       </li>
       <li>
+        <a @click="closeMenu" href="#services">{{ t("nav.services") }}</a>
+      </li>
+      <li>
         <a @click="closeMenu" href="#projetp">{{ t("nav.projects") }}</a>
       </li>
       <li>

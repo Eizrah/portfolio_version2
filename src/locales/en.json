@@ -2,6 +2,7 @@
   "nav": {
     "home": "Home",
     "about": "About",
+    "services": "Services",
     "projects": "My Projects",
     "contact": "Contact"
   },
@@ -42,6 +43,14 @@
       "mlMute": {
         "title": "ML for Deaf/Mute People",
         "description": "A machine learning project to help mute people communicate and also allow normal people to learn sign language"
+      },
+      "fanampy": {
+        "title": "Forum Fagnampy",
+        "description": "Mobile application built with Flutter (front-end), designed to foster mutual support and knowledge sharing among students of the Faculty of Science and Technology."
+      },
+      "santemada": {
+        "title": "SantéMada",
+        "description": "Mobile health application developed with Flutter, aimed at facilitating access to health information and services in Madagascar."
       }
     }
   },
@@ -71,6 +80,36 @@
       "success": "Thank you! Your message has been sent successfully.",
       "error": "Oops! An error occurred.",
       "networkError": "Unable to send the message at this time."
+    }
+  },
+  "services": {
+    "title": "My Services",
+    "subtitle": "Custom digital solutions to bring your projects to life, from concept to production.",
+    "items": {
+      "webDev": {
+        "title": "Website Design & Development",
+        "description": "Creating modern, responsive, and high-performance websites. From showcase sites to e-commerce platforms, I design complete and engaging web experiences."
+      },
+      "mobileDev": {
+        "title": "Mobile Development",
+        "description": "Cross-platform mobile app development with Flutter. Smooth, elegant, and performant apps for both iOS and Android."
+      },
+      "desktopDev": {
+        "title": "Desktop Software",
+        "description": "Building robust and intuitive desktop applications in Java and Python, tailored to your specific business needs."
+      },
+      "frontend": {
+        "title": "Frontend Development",
+        "description": "Building modern and interactive user interfaces with Vue.js, focusing on user experience and smooth animations."
+      },
+      "backend": {
+        "title": "Backend Development",
+        "description": "Setting up RESTful APIs and solid backend systems with Django and Python, including MySQL and SQLite database management."
+      },
+      "umlModeling": {
+        "title": "UML & Merise Modeling",
+        "description": "Information system analysis and design with UML and Merise. Class diagrams, sequences, use cases, and more."
+      }
     }
   },
   "footer": {

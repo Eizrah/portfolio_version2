@@ -2,6 +2,7 @@
   "nav": {
     "home": "Accueil",
     "about": "À propos",
+    "services": "Services",
     "projects": "Mes Projets",
     "contact": "Contact"
   },
@@ -42,6 +43,14 @@
       "mlMute": {
         "title": "ML pour les personnes muettes",
         "description": "c'est un projet de machine learning pour aider les personnes muettes à communiquer mais aussi permettant à des personnes normales d'apprendre le language des signes"
+      },
+      "fanampy": {
+        "title": "Forum Fagnampy",
+        "description": "Application mobile développée avec Flutter (partie front-end), conçue pour favoriser l'entraide et le partage de connaissances entre les étudiants de la Faculté des Sciences et Technologies."
+      },
+      "santemada": {
+        "title": "SantéMada",
+        "description": "Application mobile de santé développée avec Flutter, destinée à faciliter l'accès aux informations et services de santé à Madagascar."
       }
     }
   },
@@ -71,6 +80,36 @@
       "success": "Merci ! Votre message a été envoyé avec succès.",
       "error": "Oups ! Une erreur est survenue.",
       "networkError": "Impossible d'envoyer le message pour le moment."
+    }
+  },
+  "services": {
+    "title": "Mes Services",
+    "subtitle": "Des solutions numériques sur mesure pour donner vie à vos projets, du concept à la mise en production.",
+    "items": {
+      "webDev": {
+        "title": "Conception de Sites Web",
+        "description": "Création de sites web modernes, réactifs et performants. Du site vitrine à la plateforme e-commerce, je conçois des expériences web complètes et engageantes."
+      },
+      "mobileDev": {
+        "title": "Développement Mobile",
+        "description": "Développement d'applications mobiles cross-platform avec Flutter. Des apps fluides, élégantes et performantes pour iOS et Android."
+      },
+      "desktopDev": {
+        "title": "Logiciels Desktop",
+        "description": "Conception de logiciels de bureau robustes et intuitifs en Java et Python, adaptés à vos besoins métier spécifiques."
+      },
+      "frontend": {
+        "title": "Développement Frontend",
+        "description": "Intégration d'interfaces utilisateur modernes et interactives avec Vue.js, en mettant l'accent sur l'expérience utilisateur et les animations fluides."
+      },
+      "backend": {
+        "title": "Développement Backend",
+        "description": "Mise en place d'API RESTful et de systèmes backend solides avec Django et Python, incluant la gestion de bases de données MySQL et SQLite."
+      },
+      "umlModeling": {
+        "title": "Modélisation UML & Merise",
+        "description": "Analyse et conception de systèmes d'information avec UML et Merise. Diagrammes de classes, séquences, cas d'utilisation et plus encore."
+      }
     }
   },
   "footer": {

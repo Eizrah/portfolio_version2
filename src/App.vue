@@ -7,6 +7,7 @@
     <main>
       <BlockAcceil id="home" />
       <APropos id="apropos" />
+      <ServicesB id="services" />
       <ProjetP id="projetp" />
       <ContactMe id="contactme" />
     </main>
@@ -23,6 +24,7 @@ import PiedsNav from "./components/PiedsNav.vue";
 import TetePages from "./components/TetePages.vue";
 import BlockAcceil from "./components/BlockAcceil.vue";
 import APropos from "./components/APropos.vue";
+import ServicesB from "./components/ServicesB.vue";
 import ProjetP from "./components/ProjetP.vue";
 import ContactMe from "./components/ContactMe.vue";
 
